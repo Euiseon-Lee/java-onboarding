@@ -1,18 +1,20 @@
 package onboarding;
 
+import java.util.Stack;
+
 public class Problem2 {
     public static String solution(String cryptogram) {
         String[] parts = cryptogram.split("");
-        Stack<String> target = new Stack<String>();
-        for(int i=0; i<parts.length; i++) {
-            target.push(parts[i]);
+        Stack<String> target = new Stack<>();
+        for (String part : parts) {
+            target.push(part);
         }
 
         while (!decryptingCheck(target)) {
             target = decrypting(target);
         }
 
-        StringBuffer answer = new StringBuffer();
+        StringBuilder answer = new StringBuilder();
         while(!target.empty()) {
             answer.insert(0, target.pop());
         }
@@ -22,7 +24,7 @@ public class Problem2 {
     
     
     public static Stack<String> decrypting (Stack<String> target){
-        Stack<String> decryptingTarget = new Stack<String>();
+        Stack<String> decryptingTarget = new Stack<>();
         decryptingTarget.push(target.firstElement());
 
         String compare = decryptingTarget.peek();
